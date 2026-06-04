@@ -1,17 +1,26 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Balance from './components/Balance'
 import TransactionForm from './components/TransactionForm'
 import TransactionList from './components/TransactionList'
 
 function App() {
 
-  const [transactions, setTransactions] = useState([
-    { id: 1, title: "Lunch", amount: -8 },
-    { id: 2, title: "Salary", amount: 500},
-  ])
+  const [transactions, setTransactions] = useState(() => {
+    const savedTransactions = localStorage.getItem("transactions")
+
+    return savedTransactions ? JSON.parse(savedTransactions) : []
+  })
+
+  useEffect(() => {
+    localStorage.setItem("transactions", JSON.stringify(transactions))
+  }, [transactions])
 
   function addTransaction(transaction) {
     setTransactions([...transactions, transaction])
+  }
+
+  function deleteTransaction(id) {
+    setTransactions(transactions.filter(transaction => transaction.id !== id))
   }
 
   return (
@@ -20,7 +29,7 @@ function App() {
 
       <Balance transactions={transactions} />
       <TransactionForm addTransaction={addTransaction} />
-      <TransactionList transactions={transactions} />
+      <TransactionList transactions={transactions} deleteTransaction={deleteTransaction} />
     </>
   )
 }

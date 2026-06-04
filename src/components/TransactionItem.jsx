@@ -1,4 +1,4 @@
-function TransactionItem ({ transaction }) {
+function TransactionItem ({ transaction, deleteTransaction }) {
     return (
         <div
             style={{
@@ -9,6 +9,8 @@ function TransactionItem ({ transaction }) {
         >
             <h3>{transaction.title}</h3>
             <h3>{transaction.amount}</h3>
+
+            <button onClick={() => deleteTransaction(transaction.id)}>Delete</button>
         </div>
     )
 }

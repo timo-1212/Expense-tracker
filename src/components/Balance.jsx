@@ -1,4 +1,4 @@
-function Balance({ transactions }) {
+function Balance({ transactions = [] }) {
     const balance = transactions.reduce((total, transaction) => {
         return total + transaction.amount
     }, 0)
