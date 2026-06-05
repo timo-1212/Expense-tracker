@@ -8,7 +8,8 @@ function TransactionItem ({ transaction, deleteTransaction }) {
             }}
         >
             <h3>{transaction.title}</h3>
-            <h3>{transaction.amount}</h3>
+            <h3>{transaction.amount}$</h3>
+            <p>Category: {transaction.category}</p>
 
             <button onClick={() => deleteTransaction(transaction.id)}>Delete</button>
         </div>

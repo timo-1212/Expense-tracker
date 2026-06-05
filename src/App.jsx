@@ -11,6 +11,11 @@ function App() {
     return savedTransactions ? JSON.parse(savedTransactions) : []
   })
 
+  const [selectedCategory, setSelectedcategory] = useState("All")
+
+  const filteredTransactions = selectedCategory === "All" ? transactions
+    : transactions.filter(transaction => transaction.category === selectedCategory)
+
   useEffect(() => {
     localStorage.setItem("transactions", JSON.stringify(transactions))
   }, [transactions])
@@ -29,7 +34,18 @@ function App() {
 
       <Balance transactions={transactions} />
       <TransactionForm addTransaction={addTransaction} />
-      <TransactionList transactions={transactions} deleteTransaction={deleteTransaction} />
+      <select
+        value={selectedCategory}
+        onChange={(event) => setSelectedcategory(event.target.value)}
+      >
+        <option value="All">All</option>
+        <option value="Food">Food</option>
+        <option value="Transport">Transport</option>
+        <option value="Entertainment">Entertainment</option>
+        <option value="Income">Income</option>
+        <option value="Other">Other</option>
+      </select>
+      <TransactionList transactions={filteredTransactions} deleteTransaction={deleteTransaction} />
     </>
   )
 }
