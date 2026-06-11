@@ -22,8 +22,9 @@ function TransactionForm ({ addTransaction }) {
         setCategory("Food")
     }
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="space-y-4">
             <input
+                className="w-full rounded-xl border border-slate-200 px-4 py-2 outline-none placeholder-slate-500 focus:border-emerald-500"
                 type="text"
                 placeholder="Transaction title"
                 value={title}
@@ -31,6 +32,7 @@ function TransactionForm ({ addTransaction }) {
             />
 
             <input
+                className="w-full rounded-xl border border-slate-200 px-4 py-2 outline-none placeholder-slate-500 focus:border-emerald-500"
                 type="number"
                 placeholder="Amount"
                 value={amount}
@@ -38,6 +40,7 @@ function TransactionForm ({ addTransaction }) {
             />
 
             <select
+                className="w-full rounded-xl border border-slate-200 px-4 py-2 outline-none text-slate-500"
                 value={category}
                 onChange={(event) => setCategory(event.target.value)}
             >
@@ -47,7 +50,13 @@ function TransactionForm ({ addTransaction }) {
                 <option value="Income">Income</option>
                 <option value="Other">Other</option>
             </select>
-            <button type="submit">Add transaction</button>
+
+            <button 
+                className="w-full rounded-xl bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-700 cursor-pointer" 
+                type="submit"
+            >
+                Add transaction
+            </button>
         </form>
     )
 }
