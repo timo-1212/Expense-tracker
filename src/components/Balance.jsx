@@ -1,9 +1,22 @@
 function Balance({ transactions = [] }) {
-    const balance = transactions.reduce((total, transaction) => {
-        return total + transaction.amount
-    }, 0)
+    const income = transactions
+        .filter(transaction => transaction.amount > 0)
+        .reduce((total, transaction) => total + transaction.amount, 0)
 
-    return <h2>Balance: {balance}$</h2>
+    const expenses = transactions
+        .filter(transaction => transaction.amount < 0)
+        .reduce((total, transaction) => total + transaction.amount, 0)
+
+    const balance = income + expenses
+
+    return (
+        <div>
+            <h2>Summary</h2>
+            <p>Income: {income}€</p>
+            <p>Expenses: {expenses}€</p>
+            <p>Balance: {balance}€</p>
+        </div>
+    )
 }
 
 export default Balance

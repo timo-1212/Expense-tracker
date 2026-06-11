@@ -109,3 +109,15 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+button {
+  cursor: pointer;
+}
+
+.income {
+  color: green;
+}
+
+.expense {
+  color: red;
+}

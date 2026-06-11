@@ -1,4 +1,6 @@
 function TransactionItem ({ transaction, deleteTransaction }) {
+    const amountClass = transaction.amount > 0 ? "income" : "expense"
+
     return (
         <div
             style={{
@@ -8,7 +10,7 @@ function TransactionItem ({ transaction, deleteTransaction }) {
             }}
         >
             <h3>{transaction.title}</h3>
-            <h3>{transaction.amount}$</h3>
+            <p className={amountClass}>{transaction.amount}€</p>
             <p>Category: {transaction.category}</p>
 
             <button onClick={() => deleteTransaction(transaction.id)}>Delete</button>
