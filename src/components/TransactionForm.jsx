@@ -29,10 +29,14 @@ function TransactionForm ({ addTransaction }) {
             return
         }
 
+        const numericAmount = Math.abs(Number(amount))
+
+        const finalAmount = category === 'Income' ? numericAmount : -numericAmount
+
         const newTransaction = {
             id: Date.now(),
             title: title.trim(),
-            amount: Number(amount),
+            amount: finalAmount,
             category: category,
         }
 
@@ -80,7 +84,7 @@ function TransactionForm ({ addTransaction }) {
             </select>
 
             <button 
-                className="w-full rounded-xl bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-700 cursor-pointer" 
+                className="w-full rounded-xl bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-700 cursor-pointer duration-200" 
                 type="submit"
             >
                 Add transaction

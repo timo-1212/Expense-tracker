@@ -25,7 +25,7 @@ function TransactionItem ({ transaction, deleteTransaction }) {
         </strong>
 
         <button
-          className="rounded-lg bg-rose-50 px-3 py-1 text-sm font-medium text-rose-600 hover:bg-rose-100 cursor-pointer"
+          className="rounded-lg bg-rose-50 px-3 py-1 text-sm font-medium text-rose-600 hover:bg-rose-100 cursor-pointer duration-200"
           onClick={() => deleteTransaction(transaction.id)}
         >
           Delete

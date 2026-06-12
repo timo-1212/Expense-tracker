@@ -22,7 +22,7 @@ function App() {
   }, [transactions])
 
   function addTransaction(transaction) {
-    setTransactions([...transactions, transaction])
+    setTransactions([transaction, ...transactions])
   }
 
   function deleteTransaction(id) {

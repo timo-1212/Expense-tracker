@@ -1,4 +1,6 @@
 function CategoryChart( {transactions = [] }) {
+    const categories = ['Food', 'Transport', 'Entertainment', 'Other']
+
     const expenseTransactions = transactions.filter(
         transaction => transaction.amount < 0
     )
@@ -12,9 +14,12 @@ function CategoryChart( {transactions = [] }) {
         return totals
     }, {})
 
-    const chartData = Object.entries(categoryTotals).map(([category, total]) => ({
-        category, total,
+    const chartData = categories.filter(category => categoryTotals[category]).map(category => ({
+        category,
+        total: categoryTotals[category],
     }))
+
+
 
     const maxTotal = Math.max(
         ...chartData.map(item => item.total), 0
