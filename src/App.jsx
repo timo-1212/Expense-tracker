@@ -13,9 +13,17 @@ function App() {
   })
 
   const [selectedCategory, setSelectedcategory] = useState("All")
+  const [selectedDateRange, setSelectedDateRange] = useState("All")
 
-  const filteredTransactions = selectedCategory === "All" ? transactions
-    : transactions.filter(transaction => transaction.category === selectedCategory)
+  const filteredTransactions = transactions.filter(transaction => {
+    const matchesCategory =
+      selectedCategory === "All" ||
+      transaction.category === selectedCategory
+
+    const matchesDate = isInSelectedDateRange(transaction)
+
+    return matchesCategory && matchesDate
+  })
 
   useEffect(() => {
     localStorage.setItem("transactions", JSON.stringify(transactions))
@@ -27,6 +35,26 @@ function App() {
 
   function deleteTransaction(id) {
     setTransactions(transactions.filter(transaction => transaction.id !== id))
+  }
+
+  function isInSelectedDateRange(transaction) {
+    if (selectedDateRange === "All") return true
+
+    const transactionDate = new Date(transaction.createdAt)
+    const today = new Date()
+
+    if (selectedDateRange === "Today") {
+      return transactionDate.toDateString() === today.toDateString()
+    }
+
+    if (selectedDateRange === "This month") {
+      return (
+        transactionDate.getMonth() === today.getMonth() &&
+        transactionDate.getFullYear() === today.getFullYear()
+      )
+    }
+
+    return true
   }
 
   return (
@@ -45,11 +73,21 @@ function App() {
         <section className="rounded-2xl bg-white p-6 shadow-sm">
           <div className="mb-4 flex items-center justify-between gap-4">
             <h2 className="mb-4 text-xl font-semibold text-slate-800">Transactions</h2>
+            <div className="flex gap-3">
+              <select
+                className="rounded-xl border-slate-200 bg-white px-4 py-2 text-sm shadow-sm outline-none text-slate-500 focus:border-emerald-500"
+                value={selectedDateRange}
+                onChange={(event) => setSelectedDateRange(event.target.value)}
+              >
+                <option value="All">All time</option>
+                <option value="Today">Today</option>
+                <option value="This month">This month</option>
+              </select>
 
-            <select
-              className="rounded-xl border-slate-200 bg-white px-4 py-2 text-sm shadow-sm outline-none text-slate-500 focus:border-emerald-500"
-              value={selectedCategory}
-              onChange={(event) => setSelectedcategory(event.target.value)}
+              <select
+                className="rounded-xl border-slate-200 bg-white px-4 py-2 text-sm shadow-sm outline-none text-slate-500 focus:border-emerald-500"
+                value={selectedCategory}
+                onChange={(event) => setSelectedcategory(event.target.value)}
               >
                 <option value="All">All</option>
                 <option value="Food">Food</option>
@@ -57,7 +95,8 @@ function App() {
                 <option value="Entertainment">Entertainment</option>
                 <option value="Income">Income</option>
                 <option value="Other">Other</option>
-            </select>
+              </select>
+            </div>
           </div>
           
           <div className="max-h-[520px] overflow-y-auto pr-2">

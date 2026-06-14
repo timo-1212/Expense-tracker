@@ -38,6 +38,7 @@ function TransactionForm ({ addTransaction }) {
             title: title.trim(),
             amount: finalAmount,
             category: category,
+            createdAt: new Date().toISOString(),
         }
 
         addTransaction(newTransaction)

@@ -11,6 +11,10 @@ function TransactionItem ({ transaction, deleteTransaction }) {
         <p className="mt-1 text-sm text-slate-500">
           {transaction.category}
         </p>
+
+        <p className="mt-1 text-xs text-slate-400">
+          {new Date(transaction.createdAt).toLocaleDateString()}
+        </p>
       </div>
 
       <div className="flex items-center gap-4">

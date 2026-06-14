@@ -19,8 +19,6 @@ function CategoryChart( {transactions = [] }) {
         total: categoryTotals[category],
     }))
 
-
-
     const maxTotal = Math.max(
         ...chartData.map(item => item.total), 0
     )
