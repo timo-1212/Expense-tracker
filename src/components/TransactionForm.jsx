@@ -56,7 +56,7 @@ function TransactionForm ({ addTransaction }) {
             )}
 
             <input
-                className="w-full rounded-xl border border-slate-200 px-4 py-2 outline-none text-slate-800 placeholder-slate-500 focus:border-slate-600"
+                className="w-full rounded-xl border border-slate-200 px-4 py-2 outline-none text-slate-800 placeholder-slate-500 focus:border-slate-600 dark:placeholder-slate-200 dark:text-slate-100"
                 type="text"
                 placeholder="Transaction title"
                 value={title}
@@ -64,7 +64,7 @@ function TransactionForm ({ addTransaction }) {
             />
 
             <input
-                className="w-full rounded-xl border border-slate-200 px-4 py-2 outline-none text-slate-800 placeholder-slate-500 focus:border-slate-600"
+                className="w-full rounded-xl border border-slate-200 px-4 py-2 outline-none text-slate-800 placeholder-slate-500 focus:border-slate-600 dark:placeholder-slate-200 dark:text-slate-100"
                 type="number"
                 placeholder="Amount"
                 value={amount}
@@ -72,7 +72,7 @@ function TransactionForm ({ addTransaction }) {
             />
 
             <select
-                className="w-full rounded-xl border border-slate-200 px-4 py-2 outline-none text-slate-500"
+                className="w-full rounded-xl border border-slate-200 px-4 py-2 outline-none text-slate-500 duration-300 dark:text-slate-200 dark:bg-slate-800"
                 value={category}
                 onChange={(event) => setCategory(event.target.value)}
             >

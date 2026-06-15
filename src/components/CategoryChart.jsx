@@ -25,7 +25,7 @@ function CategoryChart( {transactions = [] }) {
 
     if (chartData.length === 0) {
         return (
-            <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-500">
+            <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-500 duration-300 dark:bg-slate-700 dark:text-slate-100">
                 No expenses to display.
             </p>
         )
@@ -40,11 +40,11 @@ function CategoryChart( {transactions = [] }) {
                 return (
                     <div key={item.category}>
                         <div className="mb-2 flex items-center justify-between text-sm">
-                            <span className="font-medium text-slate-700">
+                            <span className="font-medium text-slate-700 dark:text-slate-100">
                                 {item.category}
                             </span>
 
-                            <span className="font-semibold text-slate-800">
+                            <span className="font-semibold text-slate-800 dark:text-slate-100">
                                 {item.total}€
                             </span>
                         </div>
