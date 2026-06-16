@@ -72,7 +72,7 @@ function TransactionForm ({ addTransaction }) {
             />
 
             <select
-                className="w-full rounded-xl border border-slate-200 px-4 py-2 outline-none text-slate-500 duration-300 dark:text-slate-200 dark:bg-slate-800"
+                className="w-full rounded-xl border border-slate-200 px-4 py-2 outline-none bg-white text-slate-500 duration-300 dark:text-slate-200 dark:bg-slate-800"
                 value={category}
                 onChange={(event) => setCategory(event.target.value)}
             >

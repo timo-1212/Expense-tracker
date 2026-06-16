@@ -55,11 +55,29 @@ function App() {
       return transactionDate.toDateString() === today.toDateString()
     }
 
+    if (selectedDateRange === "Last 7 days") {
+      const sevenDaysAgo = new Date()
+      sevenDaysAgo.setDate(today.getDate() - 7)
+
+      return transactionDate >= sevenDaysAgo && transactionDate <= today
+    }
+
     if (selectedDateRange === "This month") {
       return (
         transactionDate.getMonth() === today.getMonth() &&
         transactionDate.getFullYear() === today.getFullYear()
       )
+    }
+
+    if (selectedDateRange === "Last 30 days") {
+      const thirtyDaysAgo = new Date()
+      thirtyDaysAgo.setDate(today.getDate() - 30)
+
+      return transactionDate >= thirtyDaysAgo && transactionDate <= today
+    }
+
+    if (selectedDateRange === "This year") {
+      return transactionDate.getFullYear() === today.getFullYear()
     }
 
     return true
@@ -90,17 +108,20 @@ function App() {
               <h2 className="mb-4 text-xl font-semibold text-slate-800 dark:text-slate-100">Transactions</h2>
               <div className="flex gap-3">
                 <select
-                  className="rounded-xl border-slate-200 bg-white px-4 py-2 text-sm shadow-sm outline-none text-slate-500 focus:border-emerald-500 duration-300 dark:text-slate-200 dark:bg-slate-700"
+                  className="rounded-xl border-slate-200 bg-white px-4 py-2 text-sm shadow-sm outline-none text-slate-500 duration-300 dark:text-slate-200 dark:bg-slate-700"
                   value={selectedDateRange}
                   onChange={(event) => setSelectedDateRange(event.target.value)}
                 >
                   <option value="All">All time</option>
                   <option value="Today">Today</option>
+                  <option value="Last 7 days">Last 7 days</option>
                   <option value="This month">This month</option>
+                  <option value="Last 30 days">Last 30 days</option>
+                  <option value="This year">This year</option>
                 </select>
 
                 <select
-                  className="rounded-xl border-slate-200 bg-white px-4 py-2 text-sm shadow-sm outline-none text-slate-500 focus:border-emerald-500 duration-300 dark:text-slate-200 dark:bg-slate-700"
+                  className="rounded-xl border-slate-200 bg-white px-4 py-2 text-sm shadow-sm outline-none text-slate-500 duration-300 dark:text-slate-200 dark:bg-slate-700"
                   value={selectedCategory}
                   onChange={(event) => setSelectedcategory(event.target.value)}
                 >
@@ -133,7 +154,7 @@ function App() {
               <CategoryChart transactions={transactions} />
             </section>
           </aside>
-        </main>
+        </main> 
         </div>
       </div>
     </div>
