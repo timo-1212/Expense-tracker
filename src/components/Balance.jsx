@@ -1,3 +1,7 @@
+function formatCurrency(value) {
+    return `${Number(value.toFixed(2)).toString()}€`
+}
+
 function Balance({ transactions = [] }) {
     const income = transactions
         .filter(transaction => transaction.amount > 0)
@@ -13,17 +17,17 @@ function Balance({ transactions = [] }) {
         <section className="mb-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-2xl bg-white p-5 shadow-sm duration-300 dark:bg-slate-800">
                 <p className="text-sm text-slate-500 dark:text-slate-100">Balance</p>
-                <strong className="mt-2 block text-2xl text-slate-800 dark:text-slate-100">{balance}€</strong>
+                <strong className="mt-2 block text-2xl text-slate-800 dark:text-slate-100">{formatCurrency(balance)}</strong>
             </div>
 
             <div className="rounded-2xl bg-white p-5 shadow-sm duration-300 dark:bg-slate-800">
                 <p className="text-sm text-slate-500 dark:text-slate-100">Income</p>
-                <strong className="mt-2 block text-2xl text-emerald-600">{income}€</strong>
+                <strong className="mt-2 block text-2xl text-emerald-600">{formatCurrency(income)}</strong>
             </div>
 
             <div className="rounded-2xl bg-white p-5 shadow-sm duration-300 dark:bg-slate-800">
                 <p className="text-sm text-slate-500 dark:text-slate-100">Expenses</p>
-                <strong className="mt-2 block text-2xl text-rose-500">{expenses}€</strong>
+                <strong className="mt-2 block text-2xl text-rose-500">{formatCurrency(expenses)}</strong>
             </div>
 
             <div className="rounded-2xl bg-white p-5 shadow-sm duration-300 dark:bg-slate-800">

@@ -24,6 +24,11 @@ function TransactionForm ({ addTransaction }) {
             return
         }
 
+        if (!/^\d+(\.\d+)?$/.test(amount)) {
+            setError('Amount must be a valid number')
+            return
+        }
+
         if (!category) {
             setError('Please select a category')
             return
@@ -60,15 +65,24 @@ function TransactionForm ({ addTransaction }) {
                 type="text"
                 placeholder="Transaction title"
                 value={title}
+                maxLength={70}
                 onChange={(event) => setTitle(event.target.value)}
             />
 
             <input
                 className="w-full rounded-xl border border-slate-200 px-4 py-2 outline-none text-slate-800 placeholder-slate-500 focus:border-slate-600 dark:placeholder-slate-200 dark:text-slate-100"
-                type="number"
+                type="text"
+                inputMode="decimal"
                 placeholder="Amount"
                 value={amount}
-                onChange={(event) => setAmount(event.target.value)}
+                maxLength={10}
+                onChange={(event) => {
+                    const value = event.target.value
+
+                    if (/^\d*\.?\d*$/.test(value)) {
+                        setAmount(value)
+                    }
+                }}
             />
 
             <select

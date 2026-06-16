@@ -1,3 +1,7 @@
+function formatCurrency(value) {
+    return `${Number(value.toFixed(2)).toString()}€`
+}
+
 function TransactionItem ({ transaction, deleteTransaction }) {
     const isIncome = transaction.amount > 0
 
@@ -25,7 +29,7 @@ function TransactionItem ({ transaction, deleteTransaction }) {
               : "text-rose-500"
           }
         >
-          {transaction.amount}€
+          {formatCurrency(transaction.amount)}
         </strong>
 
         <button

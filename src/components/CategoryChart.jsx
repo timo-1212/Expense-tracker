@@ -1,3 +1,7 @@
+function formatCurrency(value) {
+    return `${Number(value.toFixed(2)).toString()}€`
+}
+
 function CategoryChart( {transactions = [] }) {
     const categories = ['Food', 'Transport', 'Entertainment', 'Other']
 
@@ -45,7 +49,7 @@ function CategoryChart( {transactions = [] }) {
                             </span>
 
                             <span className="font-semibold text-slate-800 dark:text-slate-100">
-                                {item.total}€
+                                {formatCurrency(item.total)}
                             </span>
                         </div>
 
